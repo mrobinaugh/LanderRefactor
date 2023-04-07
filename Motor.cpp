@@ -4,13 +4,17 @@
 #include <array>
 #include <cmath>
 
-std::array<double, 3> Motor::getForce(Lander& lander, double timestep, std::array<double, 3> moments){
+using namespace std;
+
+array<double, 3> Motor::getForce(Lander& lander, double timestep, array<double, 3> moments){
 
     double forceMaginitude = getForceMagnitude(timestep, lander.time);
-    double forceX = std::acos(moments[1] / (lander.COM - lander.motorApplication));
-    double forceY = std::acos(moments[0] / (lander.COM - lander.motorApplication));
-    double forceZ = -std::sqrt(std::pow(forceMaginitude,2) - std::pow(forceY,2) 
-                                            - std::pow(forceX,2));
+    double forceX = acos(moments[1] / (lander.COM - lander.motorApplication));
+    double forceY = acos(moments[0] / (lander.COM - lander.motorApplication));
+    double forceZ = -sqrt(pow(forceMaginitude,2) - pow(forceY,2) 
+                                            - pow(forceX,2));
+    array<double,3> forces = {forceX,forceY,forceZ};
+    return forces;
 }
 
 double Motor::getForceMagnitude(double timeStep, double time){
@@ -21,7 +25,9 @@ double Motor::getForceMagnitude(double timeStep, double time){
     return averageForceMagnitude;
 }
 
-std::array<double, 3> Motor::getTVCAngles(double forceX, double forceY, double forceMagnitude){
-    double thetaX = std::acos(forceY/forceMagnitude);
-    double thetaY = std::acos(forceX/forceMagnitude);
+array<double, 3> Motor::getTVCAngles(double forceX, double forceY, double forceMagnitude){
+    double thetaX = acos(forceY/forceMagnitude);
+    double thetaY = acos(forceX/forceMagnitude);
+    double thetaZ = -acos(sqrt(1-pow(cos(thetaX),2)-pow(cos(thetaY),2)));
+    return {thetaX,thetaY,thetaZ};
 }
