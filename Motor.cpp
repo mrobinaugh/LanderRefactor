@@ -6,11 +6,11 @@
 
 using namespace std;
 
-array<double, 3> Motor::getForce(Lander& lander, double timestep, array<double, 3> moments){
+array<double, 3> Motor::getForce(double CG, double motorApplication, double time, double timestep, array<double, 3> moments){
 
-    double forceMaginitude = getForceMagnitude(timestep, lander.time);
-    double forceX = acos(moments[1] / (lander.COM - lander.motorApplication));
-    double forceY = acos(moments[0] / (lander.COM - lander.motorApplication));
+    double forceMaginitude = getForceMagnitude(timestep, time);
+    double forceX = acos(moments[1] / (CG - motorApplication));
+    double forceY = acos(moments[0] / (CG - motorApplication));
     double forceZ = -sqrt(pow(forceMaginitude,2) - pow(forceY,2) 
                                             - pow(forceX,2));
     array<double,3> forces = {forceX,forceY,forceZ};
