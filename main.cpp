@@ -1,4 +1,5 @@
-#include "Lander.cpp"
+#include "Lander.h"
+#include "Controller.h"
 #include <array>
 
 int main () {
@@ -15,4 +16,13 @@ int main () {
     Lander lander(inertiaMatrix, initRotationalState);
 
     return 0;
+}
+
+void mainLoop(Lander lander){
+    double timeStep = 0.02;
+    while(lander.state[3][2] > 0){
+        std::array<double,3> moments = Controller::getCommandedMoment(lander.state);
+        lander.propagateState(moments,timeStep);
+    }
+
 }

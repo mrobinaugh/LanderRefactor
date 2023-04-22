@@ -10,7 +10,8 @@ Lander::Lander(std::array<double,3> initInertiaMatrix,
 
 void Lander::propagateState(std::array<double,3> moments, double timeStep){
     Lander::time += timeStep;
-    std::array<double,3> force = Motor::getForce(, timeStep, moments);
+    std::array<double,3> force = Motor::getForce(Lander::CG, Lander::motorApplication,
+                                                    Lander::time, timeStep, moments);
 
     
 }
