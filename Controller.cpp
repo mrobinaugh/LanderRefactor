@@ -3,7 +3,7 @@
 #include "Controller.h"
 
 
-static double Controller::getCommandedMoment(std::array<std::array<double,3>, 4> state, double intertia, double theta, double omega){
+static double Controller::getCommandedMoment(double intertia, double theta, double omega){
     double kp = 1;
     double kd = 1;
     double thetaDesired = 0.0;

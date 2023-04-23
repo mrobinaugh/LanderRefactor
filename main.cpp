@@ -12,8 +12,9 @@ int main () {
                                                                 initRotationalVelocity,
                                                                 initVelocity,
                                                                 initPoisiton};
-
-    Lander lander(inertiaMatrix, initRotationalState);
+    double initMass = 1.0;
+    
+    Lander lander(inertiaMatrix, initRotationalState, initMass);
 
     return 0;
 }
@@ -21,8 +22,9 @@ int main () {
 void mainLoop(Lander lander){
     double timeStep = 0.02;
     while(lander.state[3][2] > 0){
-        std::array<double,3> moments = Controller::getCommandedMoment(lander.state);
-        lander.propagateState(moments,timeStep);
+        double momentX = Controller::getCommandedMoment(lander.inertiaMatrix[0],lander.state[0][0],lander.state[1][0]);
+        double momentY = Controller::getCommandedMoment(lander.inertiaMatrix[0],lander.state[0][1],lander.state[1][1]);
+        lander.propagateState(momentX, momentY, timeStep);
     }
 
 }
