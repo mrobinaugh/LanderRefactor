@@ -20,9 +20,9 @@ void Lander::propagateState(double momentX, double momentY, double timeStep){
     Lander::state[2][0] = Lander::state[2][0] + accelerationX * timeStep;
     Lander::state[2][1] = Lander::state[2][1] + accelerationY * timeStep;
     Lander::state[2][2] = Lander::state[2][2] + accelerationZ * timeStep;
-    Lander::state[3][0] = Lander::state[3][0] + Lander::state[2][0] * timeStep + 0.5 * accelerationX * timeStep ^ 2;
-    Lander::state[3][1] = Lander::state[3][1] + Lander::state[2][1] * timeStep + 0.5 * accelerationY * timeStep ^ 2;
-    Lander::state[3][2] = Lander::state[3][2] + Lander::state[2][2] * timeStep + 0.5 * accelerationZ * timeStep ^ 2;
+    //Lander::state[3][0] = Lander::state[3][0] + Lander::state[2][0] * timeStep + 0.5 * accelerationX * timeStep ^ 2;
+    //Lander::state[3][1] = Lander::state[3][1] + Lander::state[2][1] * timeStep + 0.5 * accelerationY * timeStep ^ 2;
+    //Lander::state[3][2] = Lander::state[3][2] + Lander::state[2][2] * timeStep + 0.5 * accelerationZ * timeStep ^ 2;
     
 
 
