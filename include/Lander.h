@@ -6,8 +6,11 @@ class Lander{
     double gravity = -9.81;
     double mass;
 public:
-    std::array<double,3> inertiaMatrix;
-    std::array<std::array<double,3>,4> state;
+    double ix, iy, iz;
+    double x, y, z;
+    double vx, vy, vz;
+    double wx, wy, wz;
+    double thetax, thetay, thetaz;
     double time = 0.0;
     double CG = 0.05;
     double motorApplication = 0.01;

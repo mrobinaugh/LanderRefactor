@@ -21,9 +21,9 @@ int main () {
 
 void mainLoop(Lander lander){
     double timeStep = 0.02;
-    while(lander.state[3][2] > 0){
-        double momentX = Controller::getCommandedMoment(lander.inertiaMatrix[0],lander.state[0][0],lander.state[1][0]);
-        double momentY = Controller::getCommandedMoment(lander.inertiaMatrix[0],lander.state[0][1],lander.state[1][1]);
+    while(lander.z > 0){
+        double momentX = Controller::getCommandedMoment(lander.ix,lander.thetax,lander.wx);
+        double momentY = Controller::getCommandedMoment(lander.iy,lander.thetay,lander.wy);
         lander.propagateState(momentX, momentY, timeStep);
     }
 
