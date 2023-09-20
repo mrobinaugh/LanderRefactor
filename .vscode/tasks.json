@@ -8,8 +8,13 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "-I",
+                "/home/mrobinaugh/Documents/dev/LanderRefactor/include",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "${fileDirname}/Controller.cpp",
+                "${fileDirname}/Lander.cpp",
+                "${fileDirname}/Motor.cpp"
             ],
             "options": {
                 "cwd": "${fileDirname}"
