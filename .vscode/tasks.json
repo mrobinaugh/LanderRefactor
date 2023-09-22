@@ -12,7 +12,7 @@
                 "${fileDirname}/../include",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
-                "${fileDirname}/**",
+                "${fileDirname}/Controller.cpp",
                 "${fileDirname}/Lander.cpp",
                 "${fileDirname}/Motor.cpp"
             ],
