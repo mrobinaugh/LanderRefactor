@@ -2,6 +2,16 @@
 #include "Controller.h"
 #include <array>
 
+void mainLoop(Lander lander){
+    double timeStep = 0.02;
+    while(lander.z > 0){
+        double momentX = Controller::getCommandedMoment(lander.ix,lander.thetax,lander.wx);
+        double momentY = Controller::getCommandedMoment(lander.iy,lander.thetay,lander.wy);
+        lander.propagateState(momentX, momentY, timeStep);
+    }
+
+}
+
 int main () {
     std::array<double,3> inertiaMatrix = {1.0,1.0,1.0};
     std::array<double,3> initRotationalPosition = {0.0,0.0,0.0};
@@ -10,21 +20,13 @@ int main () {
     std::array<double,3> initPoisiton = {0.0,0.0,5.0};
     std::array<std::array<double,3>,4> initRotationalState = {initRotationalPosition,
                                                                 initRotationalVelocity,
-                                                                initVelocity,
-                                                                initPoisiton};
+                                                                initPoisiton,
+                                                                initVelocity};
     double initMass = 1.0;
     
     Lander lander(inertiaMatrix, initRotationalState, initMass);
 
+    mainLoop(lander);
+
     return 0;
-}
-
-void mainLoop(Lander lander){
-    double timeStep = 0.02;
-    while(lander.state[3][2] > 0){
-        double momentX = Controller::getCommandedMoment(lander.inertiaMatrix[0],lander.state[0][0],lander.state[1][0]);
-        double momentY = Controller::getCommandedMoment(lander.inertiaMatrix[0],lander.state[0][1],lander.state[1][1]);
-        lander.propagateState(momentX, momentY, timeStep);
-    }
-
 }

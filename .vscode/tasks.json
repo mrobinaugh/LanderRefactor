@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "-I",
-                "/home/mrobinaugh/Documents/dev/LanderRefactor/include",
+                "${fileDirname}/../include",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
                 "${fileDirname}/Controller.cpp",
