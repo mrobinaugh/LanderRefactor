@@ -34,15 +34,15 @@ void Lander::propagateState(double momentX, double momentY, double timeStep){
     std::array<double,3> momentCommand = {momentX, momentY, 0.0};
     std::array<double,3> force = Motor::getForce(Lander::CG, Lander::motorApplication,
                                                     Lander::time, timeStep, momentCommand);
-    double accelerationX = force[0] * Lander::mass;
-    double accelerationY = force[0] * Lander::mass;
-    double accelerationZ = (force[0] * Lander::mass) - 9.81;
-    Lander::x = Lander::x + accelerationX * timeStep;
-    Lander::y = Lander::y + accelerationY * timeStep;
-    Lander::z = Lander::z + accelerationZ * timeStep;
-    Lander::vx = Lander::vx + Lander::x * timeStep + 0.5 * accelerationX * pow(timeStep, 2.0);
-    Lander::vy = Lander::vy + Lander::y * timeStep + 0.5 * accelerationY * pow(timeStep, 2.0);
-    Lander::vz = Lander::vz + Lander::z * timeStep + 0.5 * accelerationZ * pow(timeStep, 2.0);
+    double accelerationX = force[0] / Lander::mass;
+    double accelerationY = force[0] / Lander::mass;
+    double accelerationZ = (force[0] / Lander::mass) - 9.81;
+    Lander::vx = Lander::vx + accelerationX * timeStep;
+    Lander::vy = Lander::vy + accelerationY * timeStep;
+    Lander::vz = Lander::vz + accelerationZ * timeStep;
+    Lander::x = Lander::x + Lander::vx * timeStep + 0.5 * accelerationX * pow(timeStep, 2.0);
+    Lander::y = Lander::y + Lander::vy * timeStep + 0.5 * accelerationY * pow(timeStep, 2.0);
+    Lander::z = Lander::z + Lander::vz * timeStep + 0.5 * accelerationZ * pow(timeStep, 2.0);
     
 
 
