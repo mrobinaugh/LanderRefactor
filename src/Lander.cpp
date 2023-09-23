@@ -35,8 +35,8 @@ void Lander::propagateState(double momentX, double momentY, double timeStep){
     std::array<double,3> force = Motor::getForce(Lander::CG, Lander::motorApplication,
                                                     Lander::time, timeStep, momentCommand);
     double accelerationX = force[0] / Lander::mass;
-    double accelerationY = force[0] / Lander::mass;
-    double accelerationZ = (force[0] / Lander::mass) - 9.81;
+    double accelerationY = force[1] / Lander::mass;
+    double accelerationZ = (force[2] / Lander::mass) - 9.81;
     Lander::vx = Lander::vx + accelerationX * timeStep;
     Lander::vy = Lander::vy + accelerationY * timeStep;
     Lander::vz = Lander::vz + accelerationZ * timeStep;
