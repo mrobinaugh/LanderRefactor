@@ -2,7 +2,7 @@
 #include "Motor.h"
 
 #include <array>
-#include <math.h>
+#include <cmath>
 
 Lander::Lander(std::array<double,3> initInertiaMatrix,
                 std::array<std::array<double,3>, 4> initState, double initMass){
